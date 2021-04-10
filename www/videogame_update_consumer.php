@@ -12,7 +12,7 @@
 
 <?php
 
-require "videoconfig.php"; 
+require "videogameconfig.php"; 
 
 /* Connect to MySQL */
 $mysqli = new mysqli($host, $user, $password, $dbname, $port);
@@ -68,7 +68,7 @@ $mysqli->close();
 <P>
 
 </FORM>
-<a href = videostore.html>Return to Main Web Page</a>
+<a href = videogame.html>Return to Main Web Page</a>
 </CENTER>
 </BODY>
 <HTML>
