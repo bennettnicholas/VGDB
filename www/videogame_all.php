@@ -26,7 +26,7 @@ if ($mysqli->connect_errno) {
 
 
 /* Execute Query */
-$res = $mysqli->query("Select *");
+$result = $mysqli->query("Select *");
 
 
 /* Get number of rows */
@@ -34,15 +34,16 @@ $num = $res->num_rows;
 
 
 /* Display each value stored in the database */
-for ($i = 0; $i < $num; $i++)
-{
-	$row=$res->fetch_row();
-	if (strcmp($row[0], "Hidden") != 0)
-	{
-   		echo "<option> $row[0] </option>";
-	}
-
-}
+if($result)
+   while($row=$result->fetch_row())
+   {
+      echo "<TR>";
+      for ($i=0; $i < $result->field_count; $i++)
+      {
+         echo "<TD> $row[$i] </TD>";
+      }
+      echo "</TR>\n";
+   }
 
 /* Close your things for reasons */
 $res->close();

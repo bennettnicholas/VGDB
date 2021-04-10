@@ -1,12 +1,12 @@
 <HTML>
 <HEAD>
-<TITLE>Test PHP-MySQL-2018</TITLE>
+<TITLE>Search Game By Genre</TITLE>
 </HEAD>
 
 <BODY bgcolor = wheat>
-<H2><CENTER>Display Videos of a selected Status
+<H2><CENTER>Display Videosgames of a Selected Genre
 </CENTER></H2>
-<FORM METHOD="post" action="videostore11.php">
+<FORM METHOD="post" action="execute_query.php">
 <P>
 <CENTER>
 
@@ -26,15 +26,13 @@ if ($mysqli->connect_errno) {
 
 
 /* Execute Query */
-$res = $mysqli->query("Select distinct status from VideoForRent");
-
-
+$res = $mysqli->query("Select GameName from VideoGame Where VideoGame.Genre == Genre");
 
 
 ?>
 
 <TABLE>
-<TR><TH><strong> Select Status </strong></TH></TR>
+<TR><TH><strong> Select Genre </strong></TH></TR>
 <TR><TD valign = top>
 <SELECT size=<?php echo $num;?> id=status name=status>
 <?php
