@@ -1,10 +1,10 @@
 <HTML>
 <HEAD>
-<TITLE>Test PHP-MySQL-2018</TITLE>
+<TITLE>All Database Entries</TITLE>
 </HEAD>
 
 <BODY bgcolor = wheat>
-<H2><CENTER>Display Videos of a selected Status
+<H2><CENTER>Display All Records 
 </CENTER></H2>
 <FORM METHOD="post" action="videostore11.php">
 <P>
@@ -26,24 +26,14 @@ if ($mysqli->connect_errno) {
 
 
 /* Execute Query */
-$res = $mysqli->query("Select distinct status from VideoForRent");
+$res = $mysqli->query("Select *");
 
-
-
-
-?>
-
-<TABLE>
-<TR><TH><strong> Select Status </strong></TH></TR>
-<TR><TD valign = top>
-<SELECT size=<?php echo $num;?> id=status name=status>
-<?php
 
 /* Get number of rows */
 $num = $res->num_rows;
 
 
-/* Display each distinct STATUS value stored in the database */
+/* Display each value stored in the database */
 for ($i = 0; $i < $num; $i++)
 {
 	$row=$res->fetch_row();
@@ -53,21 +43,14 @@ for ($i = 0; $i < $num; $i++)
 	}
 
 }
+
+/* Close your things for reasons */
 $res->close();
 $mysqli->close();
 ?>
 
-</SELECT></TD>
-</TR>
-</TABLE>
 
-
-<P>
-<INPUT TYPE="SUBMIT" VALUE="Execute SQL statement...">
-<INPUT TYPE="RESET"  VALUE="Clear...">
-<P>
-
-</FORM>
+</FORM><br><br><br>
 <a href = videogame.html>Return to Main Web Page</a>
 </CENTER>
 </BODY>
