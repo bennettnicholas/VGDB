@@ -6,17 +6,16 @@
 <BODY bgcolor = wheat>
 <H2><CENTER>Display All Records 
 </CENTER></H2>
-<FORM METHOD="post" action="videostore11.php">
 <P>
 <CENTER>
 
 <?php
 
+/* load php file with mySQL credentials */
 require "videogameconfig.php"; 
 
 /* Connect to MySQL */
 $mysqli = new mysqli($host, $user, $password, $dbname, $port);
-
 
 /* Check connection error*/
 if ($mysqli->connect_errno) {
@@ -24,16 +23,13 @@ if ($mysqli->connect_errno) {
     exit();
 }
 
-
-/* Execute Query */
+/* Execute Query - result will be the whole DB */
 $result = $mysqli->query("Select *");
 
+/* Get number of rows in result */
+$num = $result->num_rows;
 
-/* Get number of rows */
-$num = $res->num_rows;
-
-
-/* Display each value stored in the database */
+/* Display the result of the query, if the query succeeded */
 if($result)
    while($row=$result->fetch_row())
    {
@@ -45,13 +41,12 @@ if($result)
       echo "</TR>\n";
    }
 
-/* Close your things for reasons */
+/* Close mySQL connections */
 $res->close();
 $mysqli->close();
 ?>
 
-
-</FORM><br><br><br>
+<br><br><br>
 <a href = videogame.html>Return to Main Web Page</a>
 </CENTER>
 </BODY>
