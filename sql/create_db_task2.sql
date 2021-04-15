@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Developer`
   `DeveloperName` VARCHAR(30) NULL,
   `DeveloperOrigin` VARCHAR(60) NULL,
   `GameID` INT NOT NULL,
-  PRIMARY KEY (`ProducerID`, `GameID`),
+  PRIMARY KEY (`DeveloperID`, `GameID`),
     FOREIGN KEY (`GameID`)
     REFERENCES `mydb`.`VideoGame` (`GameID`)
     ON DELETE CASCADE
@@ -54,7 +54,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Publisher`
   `PublisherName` VARCHAR(30) NULL,
   `PublisherOrigin` VARCHAR(60) NULL,
   `GameID` INT NOT NULL,
-  PRIMARY KEY (`DistributorID`),
+  PRIMARY KEY (`PublisherID`, `GameID`),
     FOREIGN KEY (`GameID`)
     REFERENCES `mydb`.`VideoGame` (`GameID`)
     ON DELETE CASCADE
