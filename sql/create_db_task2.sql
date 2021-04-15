@@ -24,21 +24,20 @@ CREATE TABLE IF NOT EXISTS `mydb`.`VideoGame`
   `GameName` VARCHAR(50) NULL,
   `Genre` VARCHAR(30) NULL,
   `CurrentPrice` FLOAT NULL,
-  `AvgReview` FLOAT NULL,
   PRIMARY KEY (`GameID`)
 );
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`Producer`
+-- Table `mydb`.`Developer`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`Producer` 
+CREATE TABLE IF NOT EXISTS `mydb`.`Developer` 
 (
-  `ProducerID` INT NOT NULL,
-  `ProducerName` VARCHAR(30) NULL,
-  `ProducerOrigin` VARCHAR(60) NULL,
+  `DeveloperID` INT NOT NULL,
+  `DeveloperName` VARCHAR(30) NULL,
+  `DeveloperOrigin` VARCHAR(60) NULL,
   `GameID` INT NOT NULL,
-  PRIMARY KEY (`ProducerID`),
+  PRIMARY KEY (`ProducerID`, `GameID`),
     FOREIGN KEY (`GameID`)
     REFERENCES `mydb`.`VideoGame` (`GameID`)
     ON DELETE CASCADE
@@ -47,13 +46,13 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Producer`
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`Distributor`
+-- Table `mydb`.`Publisher`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`Distributor` 
+CREATE TABLE IF NOT EXISTS `mydb`.`Publisher` 
 (
-  `DistributorID` INT NOT NULL,
-  `DistributorName` VARCHAR(30) NULL,
-  `DistributorOrigin` VARCHAR(60) NULL,
+  `PublisherID` INT NOT NULL,
+  `PublisherName` VARCHAR(30) NULL,
+  `PublisherOrigin` VARCHAR(60) NULL,
   `GameID` INT NOT NULL,
   PRIMARY KEY (`DistributorID`),
     FOREIGN KEY (`GameID`)
