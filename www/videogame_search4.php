@@ -1,12 +1,12 @@
 <HTML>
 <HEAD>
-<TITLE>Test PHP-MySQL-2018</TITLE>
+<TITLE>Search Game By Price</TITLE>
 </HEAD>
 
 <BODY bgcolor = wheat>
-<H2><CENTER>Display Videos of a selected Status
+<H2><CENTER>Display Videogames That Cost Less Than Your Top Dollar
 </CENTER></H2>
-<FORM METHOD="post" action="videostore11.php">
+<FORM METHOD="post" action="">
 <P>
 <CENTER>
 
@@ -24,48 +24,61 @@ if ($mysqli->connect_errno) {
     exit();
 }
 
-
-/* Execute Query */
-$res = $mysqli->query("Select distinct status from VideoForRent");
-
-
-
+$genre = "";
 
 ?>
+
 
 <TABLE>
-<TR><TH><strong> Select Status </strong></TH></TR>
+<TR><TH><strong> Select Top Price </strong></TH></TR>
 <TR><TD valign = top>
-<SELECT size=<?php echo $num;?> id=status name=status>
-<?php
-
-/* Get number of rows */
-$num = $res->num_rows;
-
-
-/* Display each distinct STATUS value stored in the database */
-for ($i = 0; $i < $num; $i++)
-{
-	$row=$res->fetch_row();
-	if (strcmp($row[0], "Hidden") != 0)
-	{
-   		echo "<option> $row[0] </option>";
-	}
-
-}
-$res->close();
-$mysqli->close();
-?>
-
-</SELECT></TD>
+<input type="text" name="price">
+<input type="submit">
+</TD>
 </TR>
 </TABLE>
 
 
-<P>
-<INPUT TYPE="SUBMIT" VALUE="Execute SQL statement...">
-<INPUT TYPE="RESET"  VALUE="Clear...">
-<P>
+<?php
+
+if( isset($_POST['price']) ){
+	
+	$price = $_POST['price'];
+	
+	/* Execute Query */
+	$result = $mysqli->query("Select GameName, CurrentPrice From VideoGame Where CurrentPrice <= $price");
+	
+	//print result
+	if($result->num_rows > 0){
+	
+		echo "<H3>Video Games Less Than \$" . $price . ":</H3>";
+		echo "<TABLE>";
+		echo "<TR>";
+		echo "<TD><b>Name</b></TD><TD><b>Price</b></TD>";
+	
+		while($row=$result->fetch_row())
+		{
+			echo "<TR>";
+			for ($i=0; $i < $result->field_count; $i++)
+			{
+				echo "<TD> $row[$i] &nbsp&nbsp&nbsp&nbsp </TD>";
+			}
+			echo "</TR>\n";
+		}
+		echo "</TABLE><br>";
+	}
+	
+	else{
+		echo "<H3><br>No Video Games Less Than \$ '" . $price . "'<br><br></H3>";
+	}
+}
+
+?>
+
+
+<?php
+$mysqli->close();
+?>
 
 </FORM>
 <a href = videogame.html>Return to Main Web Page</a>

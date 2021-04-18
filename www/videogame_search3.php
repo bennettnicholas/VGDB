@@ -1,12 +1,11 @@
 <HTML>
 <HEAD>
-<TITLE>Test PHP-MySQL-2018</TITLE>
+<TITLE>Search Game By Reviews</TITLE>
 </HEAD>
 
 <BODY bgcolor = wheat>
-<H2><CENTER>Display Videos of a selected Status
+<H2><CENTER>Display Videogames With 4 or More Stars
 </CENTER></H2>
-<FORM METHOD="post" action="videostore11.php">
 <P>
 <CENTER>
 
@@ -24,50 +23,42 @@ if ($mysqli->connect_errno) {
     exit();
 }
 
-
+	
 /* Execute Query */
-$res = $mysqli->query("Select distinct status from VideoForRent");
-
-
+$result = $mysqli->query("Select GameName, CurrentPrice From VideoGame");
+	
+//print result
+if($result){
+	
+	echo "<H3>Highly Rated Video Games:</H3>";
+	echo "<TABLE>";
+	echo "<TR>";
+	echo "<TD><b>Name</b></TD><TD><b>Price</b></TD><TD><b>Average Rating</b></TD>";
+	
+	while($row=$result->fetch_row())
+	{
+		echo "<TR>";
+		for ($i=0; $i < $result->field_count; $i++)
+		{
+			echo "<TD> $row[$i] &nbsp&nbsp&nbsp&nbsp </TD>";
+		}
+		echo "</TR>\n";
+	}
+	echo "</TABLE><br>";
+}
+	
+else{
+	echo "<H3><br>No Highly Rated Games <br><br></H3>";
+}
 
 
 ?>
 
-<TABLE>
-<TR><TH><strong> Select Status </strong></TH></TR>
-<TR><TD valign = top>
-<SELECT size=<?php echo $num;?> id=status name=status>
+
 <?php
-
-/* Get number of rows */
-$num = $res->num_rows;
-
-
-/* Display each distinct STATUS value stored in the database */
-for ($i = 0; $i < $num; $i++)
-{
-	$row=$res->fetch_row();
-	if (strcmp($row[0], "Hidden") != 0)
-	{
-   		echo "<option> $row[0] </option>";
-	}
-
-}
-$res->close();
 $mysqli->close();
 ?>
 
-</SELECT></TD>
-</TR>
-</TABLE>
-
-
-<P>
-<INPUT TYPE="SUBMIT" VALUE="Execute SQL statement...">
-<INPUT TYPE="RESET"  VALUE="Clear...">
-<P>
-
-</FORM>
 <a href = videogame.html>Return to Main Web Page</a>
 </CENTER>
 </BODY>

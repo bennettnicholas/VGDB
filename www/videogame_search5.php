@@ -1,12 +1,12 @@
 <HTML>
 <HEAD>
-<TITLE>Test PHP-MySQL-2018</TITLE>
+<TITLE>Search Streams By Game</TITLE>
 </HEAD>
 
 <BODY bgcolor = wheat>
-<H2><CENTER>Display Videos of a selected Status
+<H2><CENTER>Display Any Recorded Streams For A Video Game
 </CENTER></H2>
-<FORM METHOD="post" action="videostore11.php">
+<FORM METHOD="post" action="">
 <P>
 <CENTER>
 
@@ -24,48 +24,60 @@ if ($mysqli->connect_errno) {
     exit();
 }
 
-
-/* Execute Query */
-$res = $mysqli->query("Select distinct status from VideoForRent");
-
-
-
+$genre = "";
 
 ?>
+
 
 <TABLE>
-<TR><TH><strong> Select Status </strong></TH></TR>
+<TR><TH><strong> Select Game Name </strong></TH></TR>
 <TR><TD valign = top>
-<SELECT size=<?php echo $num;?> id=status name=status>
-<?php
-
-/* Get number of rows */
-$num = $res->num_rows;
-
-
-/* Display each distinct STATUS value stored in the database */
-for ($i = 0; $i < $num; $i++)
-{
-	$row=$res->fetch_row();
-	if (strcmp($row[0], "Hidden") != 0)
-	{
-   		echo "<option> $row[0] </option>";
-	}
-
-}
-$res->close();
-$mysqli->close();
-?>
-
-</SELECT></TD>
+<input type="text" name="game">
+<input type="submit">
+</TD>
 </TR>
 </TABLE>
 
 
-<P>
-<INPUT TYPE="SUBMIT" VALUE="Execute SQL statement...">
-<INPUT TYPE="RESET"  VALUE="Clear...">
-<P>
+<?php
+
+if( isset($_POST['game']) ){
+	
+	$game_name = $_POST['game'];
+	
+	/* Execute Query */
+	$result = $mysqli->query("Select StreamLink From Stream");
+	
+	//print result
+	if($result){
+	
+		echo "<H3>Links To Streams For '" . $game_name . "':</H3>";
+		echo "<TABLE>";
+		echo "<TR>";
+	
+		while($row=$result->fetch_row())
+		{
+			echo "<TR>";
+			for ($i=0; $i < $result->field_count; $i++)
+			{
+				echo "<TD> $row[$i] &nbsp&nbsp&nbsp&nbsp </TD>";
+			}
+			echo "</TR>\n";
+		}
+		echo "</TABLE><br>";
+	}
+	
+	else{
+		echo "<H3>No Available Streams For '" . $game_name . "':</H3>";
+	}
+}
+
+?>
+
+
+<?php
+$mysqli->close();
+?>
 
 </FORM>
 <a href = videogame.html>Return to Main Web Page</a>
