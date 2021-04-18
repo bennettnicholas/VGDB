@@ -70,7 +70,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Consumer`
   `ConsumerID` INT NOT NULL,
   `ConsumerName` VARCHAR(50) NULL,
   `GameID` INT NOT NULL,
-  PRIMARY KEY (`ConsumerID`),
+  PRIMARY KEY (ConsumerID, GameID),
     FOREIGN KEY (`GameID`)
     REFERENCES `mydb`.`VideoGame` (`GameID`)
     ON DELETE CASCADE
