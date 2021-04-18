@@ -93,7 +93,4 @@ VALUES (1, 'https://www.twitch.tv/yassuo', 4, 2);
 INSERT INTO `Mod` (ModID, ModDetails, ConsumerID, GameID)
 VALUES (1, 'CSGO STAR WARS', 1, 10);
 
-SELECT *
-From 
-
 COMMIT;
