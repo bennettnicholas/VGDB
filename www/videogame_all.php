@@ -2,12 +2,9 @@
 <HEAD>
 <TITLE>All Database Entries</TITLE>
 </HEAD>
-
 <BODY bgcolor = wheat>
-<H2><CENTER>Display All Records 
-</CENTER></H2>
-<P>
-<CENTER>
+<H2><CENTER>Display All Records </CENTER></H2>
+<P><CENTER>
 
 <?php
 
