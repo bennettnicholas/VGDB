@@ -61,9 +61,9 @@ VALUES (5, 'Rockstar Games', 'American', 7);
 INSERT INTO Developer (DeveloperID, DeveloperName, DeveloperOrigin, GameID)
 VALUES (6, 'Ludeon Studios', 'Canada', 8);
 INSERT INTO Developer (DeveloperID, DeveloperName, DeveloperOrigin, GameID)
-VALUES (6, 'Rare', 'United Kingdom', 9);
+VALUES (7, 'Rare', 'United Kingdom', 9);
 INSERT INTO Developer (DeveloperID, DeveloperName, DeveloperOrigin, GameID)
-VALUES (6, 'Valve', 'American', 10);
+VALUES (8, 'Valve', 'American', 10);
 
 INSERT INTO Consumer (ConsumerID, ConsumerName, GameID)
 VALUES (1, 'John Doe', 1);
