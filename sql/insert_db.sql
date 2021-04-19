@@ -72,7 +72,7 @@ VALUES (1, 'John Doe', 2);
 INSERT INTO Consumer (ConsumerID, ConsumerName, GameID)
 VALUES (2, 'Nick Bennett', 3);
 INSERT INTO Consumer (ConsumerID, ConsumerName, GameID)
-VALUES (2, 'Dustin Reff', 4);
+VALUES (3, 'Dustin Reff', 4);
 INSERT INTO Consumer (ConsumerID, ConsumerName, GameID)
 VALUES (3, 'Dustin Reff', 5);
 INSERT INTO Consumer (ConsumerID, ConsumerName, GameID)
@@ -92,5 +92,8 @@ VALUES (1, 'https://www.twitch.tv/yassuo', 4, 2);
 
 INSERT INTO `Mod` (ModID, ModDetails, ConsumerID, GameID)
 VALUES (1, 'CSGO STAR WARS', 1, 10);
+
+INSERT INTO `Mod` (ModID, ModDetails, ConsumerID, GameID)
+VALUES (2, 'GTA CHEAT CODES', 3, 6);
 
 COMMIT;

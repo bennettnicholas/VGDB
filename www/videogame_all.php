@@ -27,7 +27,7 @@ $developers = $mysqli->query("Select * From Developer");
 $publishers = $mysqli->query("Select * From Publisher");
 $streams = $mysqli->query("Select * From Stream");
 $reviews = $mysqli->query("Select * From Review");
-$mods = $mysqli->query("Select * From Mod");
+$game_mods = $mysqli->query("Select * From mydb.Mod");
 
 
 /* Video Games */
@@ -167,17 +167,17 @@ else{
 
 /* Mods */
 
-if($mods){
+if($game_mods){
 	
 	echo "<H3>Mods :</H3>";
 	echo "<TABLE>";
 	echo "<TR>";
 	echo "<TD><b>Mod ID &nbsp&nbsp</b></TD><TD><b>Mod Details</b></TD><TD><b>Consumer ID&nbsp&nbsp</b></TD><TD><b>Game ID</b></TD>";
 	
-   while($row=$mods->fetch_row())
+   while($row=$game_mods->fetch_row())
    {
       echo "<TR>";
-      for ($i=0; $i < $mods->field_count; $i++)
+      for ($i=0; $i < $game_mods->field_count; $i++)
       {
          echo "<TD> $row[$i] &nbsp&nbsp&nbsp&nbsp </TD>";
       }
