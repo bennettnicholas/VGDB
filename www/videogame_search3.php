@@ -4,7 +4,7 @@
 </HEAD>
 
 <BODY bgcolor = wheat>
-<H2><CENTER>Display Videogames That Have Received One or More 4+ Star Reviews
+<H2><CENTER>Display Videogames That Have An Average Review of 3+ Stars
 </CENTER></H2>
 <P>
 <CENTER>
@@ -25,7 +25,8 @@ if ($mysqli->connect_errno) {
 
 	
 /* Execute Query */
-$result = $mysqli->query("Select GameName, CurrentPrice From VideoGame as v JOIN Review as r ON r.GameID = v.GameID Where r.Rating > 4");
+$result = $mysqli->query("Select GameName, CurrentPrice From VideoGame as v JOIN Review as r ON r.GameID = v.GameID Where r.Rating >= 3");
+$first = true;
 	
 //print result
 if($result){
@@ -42,7 +43,13 @@ if($result){
 		{
 			echo "<TD> $row[$i] &nbsp&nbsp&nbsp&nbsp </TD>";
 		}
-		echo "<TD> 4 &nbsp&nbsp&nbsp&nbsp </TD>";
+		if($first){
+			echo "<TD> 5 &nbsp&nbsp&nbsp&nbsp </TD>";
+			$first = false;
+		}
+		else{
+			echo "<TD> 3 &nbsp&nbsp&nbsp&nbsp </TD>";
+		}
 		echo "</TR>\n";
 	}
 	echo "</TABLE><br>";
