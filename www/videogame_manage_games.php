@@ -24,10 +24,6 @@ if ($mysqli->connect_errno) {
     exit();
 }
 
-
-/* Execute Query */
-$res = $mysqli->query("Select distinct status from VideoForRent");
-
 /* Adding a Game */
 if(isset($_POST['add'])){
 	$id = $_POST['id'];
@@ -44,7 +40,7 @@ if(isset($_POST['add'])){
 		/*make sure the id does not already exist*/
 		$res = $mysqli->query("Select * From VideoGame as v Where v.GameID = $id");
 		if($res->num_rows != 0){
-			echo "Game ID in use - please provide a different ID";
+			echo "Game ID in use - please provide a different ID or Update this game";
 		}
 		
 		/*OK - now we can safely add a game*/
