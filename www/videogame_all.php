@@ -201,15 +201,21 @@ if($streams){
 	echo "<TR>";
 	echo "<TD><b>Stream ID &nbsp&nbsp</b></TD><TD><b>Link</b></TD><TD><b>Consumer ID&nbsp&nbsp</b></TD><TD><b>Game ID</b></TD>";
 	
-   while($row=$streams->fetch_row())
-   {
-      echo "<TR>";
-      for ($i=0; $i < $streams->field_count; $i++)
-      {
-         echo "<TD> $row[$i] &nbsp&nbsp&nbsp&nbsp </TD>";
-      }
-      echo "</TR>\n";
-   }
+	while($row=$streams->fetch_row())
+	{
+		echo "<TR>";
+		for ($i=0; $i < $streams->field_count; $i++)
+		{
+			/* Link in the stream link*/
+			if($i==1){
+				echo "<TD> <a href = $row[$i]>$row[$i]</a> &nbsp&nbsp&nbsp&nbsp </TD>";	
+			}
+			else{
+				echo "<TD> $row[$i] &nbsp&nbsp&nbsp&nbsp </TD>";
+			}
+		}
+		echo "</TR>\n";
+	}
    
 	echo "</TABLE>";
 }
