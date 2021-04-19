@@ -46,7 +46,7 @@ if( isset($_POST['dev']) ){
 	$developer = $_POST['dev'];
 	
 	/* Execute Query */
-	$result = $mysqli->query("Select GameName, CurrentPrice From VideoGame As v AND GameID From Developer as d Where d.DeveloperName = '$developer'");
+	$result = $mysqli->query("Select GameName, CurrentPrice From VideoGame As v JOIN Developer AS d ON v.GameID = d.GameID Where d.DeveloperName = '$developer'");
 	
 	//print result
 	if($result){

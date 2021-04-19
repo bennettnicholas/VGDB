@@ -46,7 +46,7 @@ if( isset($_POST['game']) ){
 	$game_name = $_POST['game'];
 	
 	/* Execute Query */
-	$result = $mysqli->query("Select StreamLink From Stream");
+	$result = $mysqli->query("Select StreamLink From Stream as s JOIN VideoGame as v ON s.GameID = v.GameID Where v.GameName = '$game_name'");
 	
 	//print result
 	if($result){
