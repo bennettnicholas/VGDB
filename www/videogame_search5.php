@@ -60,7 +60,7 @@ if( isset($_POST['game']) ){
 			echo "<TR>";
 			for ($i=0; $i < $result->field_count; $i++)
 			{
-				echo "<TD> $row[$i] &nbsp&nbsp&nbsp&nbsp </TD>";
+				echo "<TD> <a href = $row[$i]>$row[$i]</a> &nbsp&nbsp&nbsp&nbsp </TD>";	
 			}
 			echo "</TR>\n";
 		}
