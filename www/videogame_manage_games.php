@@ -28,12 +28,95 @@ if ($mysqli->connect_errno) {
 /* Execute Query */
 $res = $mysqli->query("Select distinct status from VideoForRent");
 
+/* Adding a Game */
+if(isset($_POST['add'])){
+	$id = $_POST['id'];
+	$name = $_POST['name'];
+	$genre = $_POST['genre'];
+	$price = $_POST['price'];
+	
+	if($id == ''){
+		echo "Please provide a game ID";
+	}
+	
+	else{
+		
+		/*make sure the id does not already exist*/
+		$res = $mysqli->query("Select * From VideoGame as v Where v.GameID = $id");
+		if($res->num_rows != 0){
+			echo "Game ID in use - please provide a different ID";
+		}
+		
+		/*OK - now we can safely add a game*/
+		else{
+			$insert = "Insert Into VideoGame(GameID, GameName, Genre, CurrentPrice) Values('$id', '$name', '$genre', '$price')";
+			$result = $mysqli->query($insert);
+			if($result)
+				echo "---------Game Added-----------";
+		}
+	}
+}
 
+/* Updating a Game */
+if(isset($_POST['update'])){
+	$id = $_POST['id'];
+	$name = $_POST['name'];
+	$genre = $_POST['genre'];
+	$price = $_POST['price'];
+	
+	if($id == ''){
+		echo "Please provide a game ID";
+	}
+	
+	else{
+		/*make sure the id exists*/
+		$res = $mysqli->query("Select * From VideoGame as v Where v.GameID = $id");
+		if($res->num_rows == 0){
+			echo "Game ID NOT in use - please provide a different ID or Add this game";
+		}
+		
+		else{
+			$update = "Update VideoGame Set GameName = '$name', Genre = '$genre', CurrentPrice = '$price' Where VideoGame.GameID = '$id'";
+			$result = $mysqli->query($update);
+			if($result)
+				echo "---------Game Updated-----------";
+		}
+	}
+}
+
+
+/* Deleting a Game */
+if(isset($_POST['delete'])){
+	$id = $_POST['id'];
+	$name = $_POST['name'];
+	$genre = $_POST['genre'];
+	$price = $_POST['price'];
+	
+	if($id == ''){
+		echo "Please provide a game ID";
+	}
+	
+	else{
+		/*make sure the id exists*/
+		$res = $mysqli->query("Select * From VideoGame as v Where v.GameID = $id");
+		if($res->num_rows == 0){
+			echo "Game ID NOT in use - please provide a different ID or Add this game";
+		}
+		
+		else{
+			$delete = "Delete From VideoGame Where VideoGame.GameID = '$id'";
+			$result = $mysqli->query($delete);
+			if($result)
+				echo "---------Game Deleted-----------";
+		}
+	}
+}
 
 
 $mysqli->close();
 ?>
 
+<FORM METHOD="post" action="">
 <TABLE>
 <TR><TH><strong> Select Game ID </strong></TH></TR>
 <TR><TD valign = top>
@@ -57,6 +140,7 @@ $mysqli->close();
 </TD>
 </TR>
 </TABLE>
+</FORM>
 
 
 <P>
