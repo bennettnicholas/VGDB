@@ -37,20 +37,10 @@ if(isset($_POST['add'])){
 	}
 	
 	else{
-		
-		/*make sure the id does not already exist*/
-		$res = $mysqli->query("Select * From Developer as d Where d.DeveloperID = $dev_id");
-		if($res->num_rows != 0){
-			echo "Developer ID in use - please provide a different ID or Update this Developer";
-		}
-		
-		/*OK - now we can safely add a dev*/
-		else{
-			$insert = "Insert Into Developer(DeveloperID, DeveloperName, DeveloperOrigin, GameID) Values('$dev_id', '$name', '$origin', '$game_id')";
-			$result = $mysqli->query($insert);
-			if($result)
-				echo "---------Developer Added-----------";
-		}
+		$insert = "Insert Into Developer(DeveloperID, DeveloperName, DeveloperOrigin, GameID) Values('$dev_id', '$name', '$origin', '$game_id')";
+		$result = $mysqli->query($insert);
+		if($result)
+			echo "---------Developer Added-----------";
 	}
 }
 
@@ -69,11 +59,11 @@ if(isset($_POST['update'])){
 		/*make sure the id exists*/
 		$res = $mysqli->query("Select * From Developer as d Where d.DeveloperID = $dev_id");
 		if($res->num_rows == 0){
-			echo "Game ID NOT in use - please provide a different ID or Add this game";
+			echo "Developer ID NOT in use - please provide a different ID or Add this game";
 		}
 		
 		else{
-			$update = "Update Developer Set DeveloperName = '$name', DeveloperOrigin = '$origin', GameID = '$game_id' Where Developer.DeveloperID = '$dev_id'";
+			$update = "Update Developer Set DeveloperName = '$name', DeveloperOrigin = '$origin' Where Developer.DeveloperID = '$dev_id'";
 			$result = $mysqli->query($update);
 			if($result)
 				echo "---------Developer Updated-----------";
